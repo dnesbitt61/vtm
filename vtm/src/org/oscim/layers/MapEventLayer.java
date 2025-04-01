@@ -37,6 +37,8 @@ import org.oscim.utils.Parameters;
 
 import static org.oscim.backend.CanvasAdapter.dpi;
 import static org.oscim.utils.FastMath.withinSquaredDist;
+import java.util.logging.Logger;
+
 
 /**
  * Changes Viewport by handling move, fling, scale, rotation and tilt gestures.
@@ -46,6 +48,7 @@ import static org.oscim.utils.FastMath.withinSquaredDist;
  */
 public class MapEventLayer extends AbstractMapEventLayer implements InputListener, GestureListener {
 
+	private static final Logger log = Logger.getLogger(MapEventLayer.class.getName());
     private boolean mEnableRotate = true;
     private boolean mEnableTilt = true;
     private boolean mEnableMove = true;
