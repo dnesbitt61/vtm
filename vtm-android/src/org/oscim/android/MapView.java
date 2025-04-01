@@ -269,12 +269,12 @@ public class MapView extends GLSurfaceView {
 
         @Override
         public void updateMap(boolean redraw) {
-	    log.info("VTM MapView updateMap");
             synchronized (mRedrawCb) {
                 if (mPausing)
                     return;
 
                 if (!mRenderRequest) {
+	            log.info("VTM MapView updateMap - call render");
                     mRenderRequest = true;
                     mMapView.post(mRedrawCb);
                 } else {
