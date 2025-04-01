@@ -168,6 +168,9 @@ public class MapView extends GLSurfaceView {
         }
 
         mMotionEvent = new AndroidMotionEvent();
+
+	boolean overlapRendering = super.hasOverlappingRendering();
+	log.info("VTM has overlapping rendering = " + overlapRendering);
     }
 
     public void onDestroy() {
@@ -266,6 +269,7 @@ public class MapView extends GLSurfaceView {
 
         @Override
         public void updateMap(boolean redraw) {
+	    log.info("VTM updateMap");
             synchronized (mRedrawCb) {
                 if (mPausing)
                     return;
