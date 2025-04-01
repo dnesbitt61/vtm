@@ -34,6 +34,7 @@ import org.oscim.map.ViewController;
 import org.oscim.utils.FastMath;
 import org.oscim.utils.Parameters;
 import org.oscim.utils.async.Task;
+import java.util.logging.Logger;
 
 import static org.oscim.backend.CanvasAdapter.dpi;
 import static org.oscim.utils.FastMath.withinSquaredDist;
@@ -46,6 +47,7 @@ import static org.oscim.utils.FastMath.withinSquaredDist;
  */
 public class MapEventLayer2 extends AbstractMapEventLayer implements InputListener {
 
+private static final Logger log = Logger.getLogger(MapEventLayer2.class.getName());
     private boolean mEnableRotate = true;
     private boolean mEnableTilt = true;
     private boolean mEnableMove = true;
@@ -307,8 +309,10 @@ public class MapEventLayer2 extends AbstractMapEventLayer implements InputListen
                             final float pivotX = mFixOnCenter ? 0 : mPrevX1 - mMap.getWidth() / 2;
                             final float pivotY = mFixOnCenter ? 0 : mPrevY1 - mMap.getHeight() / 2;
                             mMap.animator().animateZoom(300, 2, pivotX, pivotY);
-                            if (CanvasAdapter.platform.isDesktop())
+                            if (CanvasAdapter.platform.isDesktop()) {
+				    log.info("VTM platform is desktop? updateMap");
                                 mMap.updateMap(true);
+			    }
                         }
                         return Task.DONE;
                     }
@@ -383,6 +387,7 @@ public class MapEventLayer2 extends AbstractMapEventLayer implements InputListen
                 // TODO limit scale properly
                 mDragZoom = true;
                 mViewport.scaleMap(1 + my / (height / 6), 0, 0);
+		log.info("VTM onActionMove updateMap");
                 mMap.updateMap(true);
                 mStartMove = -1;
                 return;
@@ -405,6 +410,7 @@ public class MapEventLayer2 extends AbstractMapEventLayer implements InputListen
             }
             mViewport.moveMap(mx, my);
             mScrollTracker.update(x1, y1, e.getTime());
+	    log.info("VTM onActionMove updateMap");
             mMap.updateMap(true);
             if (mMap.viewport().getMapPosition(mapPosition))
                 mMap.events.fire(Map.MOVE_EVENT, mapPosition);
@@ -556,6 +562,7 @@ public class MapEventLayer2 extends AbstractMapEventLayer implements InputListen
         mPrevX2 = x2;
         mPrevY2 = y2;
 
+	log.info("VTM onActionMove updateMap");
         mMap.updateMap(true);
 
         if (mMap.viewport().getMapPosition(mapPosition)) {

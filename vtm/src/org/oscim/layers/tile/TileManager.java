@@ -614,6 +614,7 @@ public class TileManager {
          * a tile that might be visible. */
         if (tile.isLocked()) {
             if (result == QueryResult.DELAYED && tile.isLocked())
+		    log.info("VTM tile layer updateMap");
                 mMap.updateMap(false);
             else
                 mMap.render();
