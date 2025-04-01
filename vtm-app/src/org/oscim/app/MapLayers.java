@@ -143,7 +143,8 @@ public class MapLayers {
         App.map.setTheme(theme);
 
         // default cache size 20MB
-        int cacheSize = preferences.getInt("cacheSize", 20);
+        int cacheSize = preferences.getInt("cacheSize", 200);
+	log.info("VTM cache size = " + cacheSize);
 
         if (mCache != null)
             mCache.setCacheSize(cacheSize * (1 << 20));

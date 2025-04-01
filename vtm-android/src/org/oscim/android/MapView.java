@@ -67,7 +67,7 @@ public class MapView extends GLSurfaceView {
      * OpenGL ES 2.0 default on Android for performance / stability.
      * Any larger not available versions fall back to OpenGL ES 2.0.
      */
-    public static double OPENGL_VERSION = 2.0;
+    public static double OPENGL_VERSION = 3.0;
 
     private static void init() {
         if (Parameters.THREADED_INIT)
@@ -140,9 +140,10 @@ public class MapView extends GLSurfaceView {
             // OpenGL ES 3.0 is supported with Android 4.3 (API level 18) and higher
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
                 try {
+                    log.info("VTM trying GLES 3");
                     setEGLContextFactory(new GlContextFactory());
                 } catch (Throwable t) {
-                    log.severe("Falling back to GLES 2" + t);
+                    log.info("VTM Falling back to GLES 2" + t);
                     setEGLContextClientVersion(2);
                 }
             } else
@@ -253,6 +254,7 @@ public class MapView extends GLSurfaceView {
         private final Runnable mRedrawCb = new Runnable() {
             @Override
             public void run() {
+	        log.info("VTM run redraw");
                 prepareFrame();
                 mMapView.requestRender();
             }

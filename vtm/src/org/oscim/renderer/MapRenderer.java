@@ -171,13 +171,15 @@ public class MapRenderer {
             BufferObject.checkBufferUsage(true);
             // FIXME also throw out some textures etc
         }
+	log.info("VTM OpenGL draw layer count = " + layers.length);
     }
 
     public void onSurfaceChanged(int width, int height) {
-        //log.debug("onSurfaceChanged: new={}, {}x{}", mNewSurface, width, height);
 
         if (width <= 0 || height <= 0)
             return;
+
+        log.info("VTM onSurfaceChanged");
 
         GLState.viewport(width, height);
 
