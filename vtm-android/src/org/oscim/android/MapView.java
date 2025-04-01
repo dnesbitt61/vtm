@@ -254,7 +254,6 @@ public class MapView extends GLSurfaceView {
         private final Runnable mRedrawCb = new Runnable() {
             @Override
             public void run() {
-	        log.info("VTM run redraw");
                 prepareFrame();
                 mMapView.requestRender();
             }
