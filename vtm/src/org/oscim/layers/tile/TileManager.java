@@ -613,11 +613,12 @@ public class TileManager {
         /* locked means the tile is visible or referenced by
          * a tile that might be visible. */
         if (tile.isLocked()) {
-            if (result == QueryResult.DELAYED && tile.isLocked())
-		    log.info("VTM tile layer updateMap");
+            if (result == QueryResult.DELAYED && tile.isLocked()) {
+	        log.info("VTM tile layer updateMap");
                 mMap.updateMap(false);
-            else
+	    } else {
                 mMap.render();
+	    }
         }
     }
 
