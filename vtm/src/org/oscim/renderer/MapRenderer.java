@@ -57,6 +57,8 @@ public class MapRenderer {
      */
     public static final int MAX_INDICES = MAX_QUADS * 6;
 
+    private long count = 0;
+
     public static long frametime;
     private static boolean rerender;
 
@@ -102,6 +104,8 @@ public class MapRenderer {
 
         mBufferPool.releaseBuffers();
         TextureItem.disposeTextures();
+	log.info("VTM onDrawFrame count = " + count);
+	count++;
     }
 
     private void draw() {
