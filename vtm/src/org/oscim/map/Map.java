@@ -300,6 +300,7 @@ public abstract class Map implements TaskQueue {
      */
     public void clearMap() {
         mClearMap = true;
+	log.info("VTM clearMap updateMap");
         updateMap(true);
     }
 
@@ -312,17 +313,20 @@ public abstract class Map implements TaskQueue {
                 @Override
                 public void run() {
                     mViewport.setMapPosition(mapPosition);
+	            log.info("VTM setMapPosition updateMap");
                     updateMap(true);
                 }
             });
         else {
             mViewport.setMapPosition(mapPosition);
+	    log.info("VTM setMapPosition updateMap");
             updateMap(true);
         }
     }
 
     public void setMapPosition(double latitude, double longitude, double scale) {
         mViewport.setMapPosition(new MapPosition(latitude, longitude, scale));
+	log.info("VTM setMapPosition updateMap");
         updateMap(true);
     }
 

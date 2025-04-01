@@ -192,6 +192,7 @@ public class MapRenderer {
         gl.cullFace(GL.BACK);
 
         if (!mNewSurface) {
+	    log.info("VTM new surface updateMap");
             mMap.updateMap(false);
             return;
         }
@@ -238,6 +239,7 @@ public class MapRenderer {
 
         GLState.init();
 
+	log.info("VTM onSurfaceChange updateMap");
         mMap.updateMap(true);
     }
 
