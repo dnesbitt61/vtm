@@ -285,12 +285,13 @@ public class MapView extends GLSurfaceView {
 
         @Override
         public void render() {
-            if (mPausing)
-                return;
+	    // DWN - getting lots of calls to this!
+            //if (mPausing)
+             //   return;
 
-            /* TODO should not need to call prepareFrame in mRedrawCb */
-	    log.info("VTM render call updateMap");
-            updateMap(false);
+            // TODO should not need to call prepareFrame in mRedrawCb 
+	    //log.info("VTM render call updateMap");
+            //updateMap(false);
         }
 
         @Override
@@ -304,7 +305,7 @@ public class MapView extends GLSurfaceView {
                 if (animate || mRenderWait) {
                     mRenderWait = false;
 		    log.info("VTM doneFrame - renderWait so call render again");
-                    render();
+                    //render();
                 }
             }
         }
