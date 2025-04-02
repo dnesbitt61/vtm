@@ -289,6 +289,7 @@ public class MapView extends GLSurfaceView {
                 return;
 
             /* TODO should not need to call prepareFrame in mRedrawCb */
+	    log.info("VTM render call updateMap");
             updateMap(false);
         }
 
@@ -302,6 +303,7 @@ public class MapView extends GLSurfaceView {
                 mRenderRequest = false;
                 if (animate || mRenderWait) {
                     mRenderWait = false;
+		    log.info("VTM doneFrame - renderWait so call render again");
                     render();
                 }
             }
