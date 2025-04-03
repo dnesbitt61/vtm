@@ -45,6 +45,8 @@ import org.oscim.utils.GeoPointUtils;
 import org.oscim.utils.async.SimpleWorker;
 import org.oscim.utils.geom.LineClipper;
 
+import java.util.logging.Logger;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -53,6 +55,8 @@ import java.util.List;
  * This class draws a path line in given color or texture.
  */
 public class PathLayer extends Layer implements GestureListener {
+
+	    private static final Logger log = Logger.getLogger(PathLayer.class.getName());
 
     private static final int STROKE_MIN_ZOOM = 12;
 

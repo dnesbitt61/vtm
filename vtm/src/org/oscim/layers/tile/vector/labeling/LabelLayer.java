@@ -30,9 +30,12 @@ import org.oscim.layers.tile.vector.VectorTileLayer;
 import org.oscim.map.Map;
 import org.oscim.map.Viewport;
 import org.oscim.utils.async.SimpleWorker;
+import java.util.logging.Logger;
 
 public class LabelLayer extends Layer implements Map.UpdateListener, TileManager.Listener,
         ZoomLimiter.IZoomLimiter {
+
+		private static final Logger log = Logger.getLogger(LabelLayer.class.getName());
 
     static final String LABEL_DATA = LabelLayer.class.getName();
 
@@ -78,7 +81,7 @@ public class LabelLayer extends Layer implements Map.UpdateListener, TileManager
         public boolean doWork(LabelTask t) {
 
             if (mLabelPlacer.updateLabels(t)) {
-	        log.ingo("VTM label layer - render");
+	        log.info("VTM label layer - render");
                 mMap.render();
                 return true;
             }

@@ -31,12 +31,15 @@ import org.oscim.event.GestureListener;
 import org.oscim.event.MotionEvent;
 import org.oscim.map.Map;
 import org.oscim.map.Viewport;
+import java.util.logging.Logger;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 public class ItemizedLayer extends MarkerLayer implements GestureListener {
+
+	    private static final Logger log = Logger.getLogger(ItemizedLayer.class.getName());
 
     protected final List<MarkerInterface> mItemList;
     protected final Point mTmpPoint = new Point();
