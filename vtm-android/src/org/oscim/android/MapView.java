@@ -67,7 +67,7 @@ public class MapView extends GLSurfaceView {
      * OpenGL ES 2.0 default on Android for performance / stability.
      * Any larger not available versions fall back to OpenGL ES 2.0.
      */
-    public static double OPENGL_VERSION = 3.0;
+    public static double OPENGL_VERSION = 2.0;
 
     private static void init() {
         if (Parameters.THREADED_INIT)
