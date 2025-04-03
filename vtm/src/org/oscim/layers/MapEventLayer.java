@@ -295,7 +295,6 @@ public class MapEventLayer extends AbstractMapEventLayer implements InputListene
                 // TODO limit scale properly
                 mDragZoom = true;
                 mViewport.scaleMap(1 + my / (height / 6), 0, 0);
-		log.info("VTM onActionMove updateMap");
                 mMap.updateMap(true);
                 mStartMove = -1;
                 return;
@@ -318,7 +317,6 @@ public class MapEventLayer extends AbstractMapEventLayer implements InputListene
             }
             mViewport.moveMap(mx, my);
             mScrollTracker.update(x1, y1, e.getTime());
-	    log.info("VTM onActionMove updateMap");
             mMap.updateMap(true);
             if (mMap.viewport().getMapPosition(mapPosition))
                 mMap.events.fire(Map.MOVE_EVENT, mapPosition);
@@ -470,7 +468,6 @@ public class MapEventLayer extends AbstractMapEventLayer implements InputListene
         mPrevX2 = x2;
         mPrevY2 = y2;
 
-	log.info("VTM onActionMove updateMap");
         mMap.updateMap(true);
 
         if (mMap.viewport().getMapPosition(mapPosition)) {

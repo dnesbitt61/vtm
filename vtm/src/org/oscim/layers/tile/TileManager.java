@@ -357,6 +357,7 @@ public class TileManager {
             }
 
             /* request rendering as tiles changed */
+	    log.info("VTM tile layer call map render");
             mMap.render();
         }
 
@@ -617,6 +618,7 @@ public class TileManager {
 	        log.info("VTM tile layer updateMap");
                 mMap.updateMap(false);
 	    } else {
+	        log.info("VTM tile layer call map render");
                 mMap.render();
 	    }
         }

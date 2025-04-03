@@ -310,7 +310,6 @@ private static final Logger log = Logger.getLogger(MapEventLayer2.class.getName(
                             final float pivotY = mFixOnCenter ? 0 : mPrevY1 - mMap.getHeight() / 2;
                             mMap.animator().animateZoom(300, 2, pivotX, pivotY);
                             if (CanvasAdapter.platform.isDesktop()) {
-				    log.info("VTM platform is desktop? updateMap");
                                 mMap.updateMap(true);
 			    }
                         }
@@ -387,7 +386,6 @@ private static final Logger log = Logger.getLogger(MapEventLayer2.class.getName(
                 // TODO limit scale properly
                 mDragZoom = true;
                 mViewport.scaleMap(1 + my / (height / 6), 0, 0);
-		log.info("VTM onActionMove updateMap");
                 mMap.updateMap(true);
                 mStartMove = -1;
                 return;
@@ -410,7 +408,6 @@ private static final Logger log = Logger.getLogger(MapEventLayer2.class.getName(
             }
             mViewport.moveMap(mx, my);
             mScrollTracker.update(x1, y1, e.getTime());
-	    log.info("VTM onActionMove updateMap");
             mMap.updateMap(true);
             if (mMap.viewport().getMapPosition(mapPosition))
                 mMap.events.fire(Map.MOVE_EVENT, mapPosition);
@@ -562,7 +559,6 @@ private static final Logger log = Logger.getLogger(MapEventLayer2.class.getName(
         mPrevX2 = x2;
         mPrevY2 = y2;
 
-	log.info("VTM onActionMove updateMap");
         mMap.updateMap(true);
 
         if (mMap.viewport().getMapPosition(mapPosition)) {

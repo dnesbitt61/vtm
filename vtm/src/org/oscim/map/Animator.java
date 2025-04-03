@@ -330,7 +330,6 @@ public class Animator {
         final boolean changed = v.getMapPosition(mCurPos);
 
         if (changed) {
-   	    log.info("VTM updateAnimation updateMap");
             mMap.updateMap(true);
         } else {
             mMap.postDelayed(updateTask, 10);

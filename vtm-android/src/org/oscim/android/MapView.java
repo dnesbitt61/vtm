@@ -140,10 +140,9 @@ public class MapView extends GLSurfaceView {
             // OpenGL ES 3.0 is supported with Android 4.3 (API level 18) and higher
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
                 try {
-                    log.info("VTM trying GLES 3");
                     setEGLContextFactory(new GlContextFactory());
                 } catch (Throwable t) {
-                    log.info("VTM Falling back to GLES 2" + t);
+                    log.severe("Falling back to GLES 2" + t);
                     setEGLContextClientVersion(2);
                 }
             } else
@@ -168,9 +167,6 @@ public class MapView extends GLSurfaceView {
         }
 
         mMotionEvent = new AndroidMotionEvent();
-
-	boolean overlapRendering = super.hasOverlappingRendering();
-	log.info("VTM has overlapping rendering = " + overlapRendering);
     }
 
     public void onDestroy() {
@@ -274,7 +270,6 @@ public class MapView extends GLSurfaceView {
                     return;
 
                 if (!mRenderRequest) {
-	            log.info("VTM MapView updateMap - call render");
                     mRenderRequest = true;
                     mMapView.post(mRedrawCb);
                 } else {
@@ -285,13 +280,11 @@ public class MapView extends GLSurfaceView {
 
         @Override
         public void render() {
-	    // DWN - getting lots of calls to this!
-            //if (mPausing)
-             //   return;
+            if (mPausing)
+                return;
 
-            // TODO should not need to call prepareFrame in mRedrawCb 
-	    //log.info("VTM render call updateMap");
-            //updateMap(false);
+            /* TODO should not need to call prepareFrame in mRedrawCb */
+            updateMap(false);
         }
 
         @Override
@@ -304,8 +297,7 @@ public class MapView extends GLSurfaceView {
                 mRenderRequest = false;
                 if (animate || mRenderWait) {
                     mRenderWait = false;
-		    log.info("VTM doneFrame - renderWait so call render again");
-                    //render();
+                    render();
                 }
             }
         }

@@ -104,7 +104,7 @@ public class MapRenderer {
 
         mBufferPool.releaseBuffers();
         TextureItem.disposeTextures();
-	log.info("VTM onDrawFrame count = " + count);
+	log.info("VTM onDrawFrame time = " + (System.currentTimeMillis() - frametime) + " count = " + count);
 	count++;
     }
 
@@ -174,6 +174,7 @@ public class MapRenderer {
     }
 
     public void onSurfaceChanged(int width, int height) {
+        //log.debug("onSurfaceChanged: new={}, {}x{}", mNewSurface, width, height);
 
         if (width <= 0 || height <= 0)
             return;
@@ -192,7 +193,6 @@ public class MapRenderer {
         gl.cullFace(GL.BACK);
 
         if (!mNewSurface) {
-	    log.info("VTM new surface updateMap");
             mMap.updateMap(false);
             return;
         }
@@ -239,7 +239,6 @@ public class MapRenderer {
 
         GLState.init();
 
-	log.info("VTM onSurfaceChange updateMap");
         mMap.updateMap(true);
     }
 
