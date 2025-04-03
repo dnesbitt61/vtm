@@ -157,8 +157,9 @@ public abstract class AbstractVectorLayer<T> extends Layer implements UpdateList
             //}
 
             t.buckets.prepare();
-            log.info("VTM abstract vector layer - render");
-            mMap.render();
+	    // DWN see if removing this is OK
+            //log.info("VTM abstract vector layer - render");
+            //mMap.render();
             return true;
         }
     }
