@@ -78,6 +78,7 @@ public class LabelLayer extends Layer implements Map.UpdateListener, TileManager
         public boolean doWork(LabelTask t) {
 
             if (mLabelPlacer.updateLabels(t)) {
+	        log.ingo("VTM label layer - render");
                 mMap.render();
                 return true;
             }

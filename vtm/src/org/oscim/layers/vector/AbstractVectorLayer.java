@@ -153,7 +153,7 @@ public abstract class AbstractVectorLayer<T> extends Layer implements UpdateList
             //}
 
             t.buckets.prepare();
-
+            log.info("VTM abstract vector layer - render");
             mMap.render();
             return true;
         }

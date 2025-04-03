@@ -326,6 +326,7 @@ public class PathLayer extends Layer implements GestureListener {
             if (size == 0) {
                 if (task.buckets.get() != null) {
                     task.buckets.clear();
+		    log.info("VTM path layer doWork - render");
                     mMap.render();
                 }
                 return true;
@@ -435,6 +436,7 @@ public class PathLayer extends Layer implements GestureListener {
                 ll.addLine(projected, i, false);
 
             // trigger redraw to let renderer fetch the result.
+	    log.info("VTM path layer doWork2 - render");
             mMap.render();
 
             return true;

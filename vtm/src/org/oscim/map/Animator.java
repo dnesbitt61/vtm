@@ -263,6 +263,7 @@ public class Animator {
         mDuration = duration;
         mAnimEnd = System.currentTimeMillis() + (long) duration;
         mEasingType = easingType;
+	log.info("VTM anim start - render");
         mMap.render();
     }
 

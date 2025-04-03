@@ -236,6 +236,7 @@ public class ItemizedLayer extends MarkerLayer implements GestureListener {
 
         if (nearest >= 0 && task.run(nearest)) {
             mMarkerRenderer.update();
+	    log.info("VTM itemized layer - render");
             mMap.render();
             return true;
         }
