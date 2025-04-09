@@ -28,10 +28,13 @@ import org.oscim.layers.Layer;
 import org.oscim.map.Map;
 import org.oscim.utils.FastMath;
 import org.oscim.utils.math.Interpolation;
+import java.util.logging.Logger;
 
 import static org.oscim.backend.GLAdapter.gl;
 
 public class LocationRenderer extends LayerRenderer {
+	    private static final Logger log = Logger.getLogger(LocationRenderer.class.getName());
+
 
     private static final long ANIM_RATE = 50;
     private static final long INTERVAL = 2000;
@@ -147,6 +150,7 @@ public class LocationRenderer extends LayerRenderer {
 
                 long diff = System.currentTimeMillis() - lastRun;
                 mMap.postDelayed(this, Math.min(ANIM_RATE, diff));
+		log.info("VTM LocationRenderer animate: render");
                 mMap.render();
                 lastRun = System.currentTimeMillis();
             }
