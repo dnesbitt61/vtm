@@ -305,6 +305,7 @@ public class VectorLayer extends AbstractVectorLayer<Drawable> implements Gestur
             ll.scale = (float) Math.pow(style.strokeIncrease, Math.max(t.position.getZoom() - STROKE_MIN_ZOOM, 0));
 
         if (style.generalization != Style.GENERALIZATION_NONE) {
+            log.info("VTM generalize line");
             line = DouglasPeuckerSimplifier.simplify(line, mMinX * style.generalization);
         }
 

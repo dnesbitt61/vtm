@@ -19,6 +19,8 @@
 package org.oscim.utils.geom;
 
 import org.oscim.core.GeometryBuffer;
+import java.util.logging.Logger;
+
 
 /**
  * from http://en.wikipedia.org/wiki/Cohen%E2%80%93
@@ -26,6 +28,7 @@ import org.oscim.core.GeometryBuffer;
  */
 
 public class LineClipper {
+    private static final Logger log = Logger.getLogger(LineClipper.class.getName());
 
     public static final int INSIDE = 0; // 0000
     public static final int LEFT = 1; // 0001
@@ -223,6 +226,7 @@ public class LineClipper {
     }
 
     public int clipLine(GeometryBuffer in, GeometryBuffer out) {
+        log.info("VTM clipLine");
         out.clear();
         int pointPos = 0;
         int numLines = 0;
