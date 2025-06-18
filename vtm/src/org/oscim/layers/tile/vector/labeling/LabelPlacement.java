@@ -103,16 +103,21 @@ public class LabelPlacement {
 
     private byte checkOverlap(Label l) {
 
+        log.info("DWN checkOverlap for label " + l.label);
         for (Label o = mLabels; o != null; ) {
             //check bounding box and repeat proximity
+            log.info("DWN check bbox overlap for label " + o.label);
             if (!Label.bboxOverlaps(l, o, 100)) {
 		if (!Label.withinRepeatProximity(l, o)) {
+		    log.info("DWN Label is NOT within repeat proximity to " + o.label);
                     o = (Label) o.next;
                     continue;
 		} else {
-		    log.info("DWN Label " + l.label + " is within repeat proximity to " + o.label);
+		    log.info("DWN Label is within repeat proximity to " + o.label);
 		}
-            }
+            } else {
+                log.info("DWN bounding box overlaps bbox overlap for label " + o.label);
+	    }
 
             if (Label.shareText(l, o)) {
                 // keep the label that was active earlier
@@ -311,6 +316,7 @@ public class LabelPlacement {
     }
 
     boolean updateLabels(LabelTask work) {
+        log.info("DWN updateLabels mSqrRadius = " + mSquareRadius);
 
         /* get current tiles */
         int lastZoom = mZoom;

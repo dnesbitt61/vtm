@@ -4,7 +4,7 @@ plugins {
 
 allprojects {
     group = 'org.mapsforge'
-    version = '0.25.52'
+    version = '0.25.53'
 
     ext.mapsforgeVersion = "0.24.1"
     ext.gdxVersion = "1.11.0"
