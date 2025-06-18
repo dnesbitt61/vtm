@@ -106,7 +106,7 @@ public class LabelPlacement {
         for (Label o = mLabels; o != null; ) {
             //check bounding box and repeat proximity
             if (!Label.bboxOverlaps(l, o, 100)) {
-		if (!Label.withinRepeatProximity(l, o) {
+		if (!Label.withinRepeatProximity(l, o)) {
 		    log.info("Label within repeat proximity");
 		}
                 o = (Label) o.next;
