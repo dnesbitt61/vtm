@@ -208,7 +208,7 @@ public class LabelPlacement {
 
     private Label addWayLabels(MapTile t, Label l, float dx, float dy,
                                double scale) {
-
+        log.info("DWN addWayLabels");
         LabelTileData ld = getLabels(t);
         if (ld == null)
             return l;
