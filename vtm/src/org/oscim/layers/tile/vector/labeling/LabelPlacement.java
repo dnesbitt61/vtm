@@ -35,6 +35,7 @@ import org.oscim.utils.FastMath;
 import org.oscim.utils.Parameters;
 import org.oscim.utils.geom.OBB2D;
 
+import java.util.logging.Logger;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -43,6 +44,8 @@ import static org.oscim.layers.tile.MapTile.State.READY;
 
 public class LabelPlacement {
     static final boolean dbg = false;
+
+    private static final Logger log = Logger.getLogger(LabelPlacement.class.getName());
 
     public static final LabelTileData getLabels(MapTile tile) {
         return (LabelTileData) tile.getData(LabelLayer.LABEL_DATA);
@@ -101,8 +104,11 @@ public class LabelPlacement {
     private byte checkOverlap(Label l) {
 
         for (Label o = mLabels; o != null; ) {
-            //check bounding box
+            //check bounding box and repeat proximity
             if (!Label.bboxOverlaps(l, o, 100)) {
+		if (!Label.withinRepeatProximity(l, o) {
+		    log.info("Label within repeat proximity");
+		}
                 o = (Label) o.next;
                 continue;
             }

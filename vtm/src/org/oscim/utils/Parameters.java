@@ -83,6 +83,12 @@ public final class Parameters {
     public static boolean POLY_SYMBOL = true;
 
     /**
+     * Repeat proximity (distance squared) for labels with same text
+     * TODO - use squared distance to avoid sqrt
+     */
+    public static double REPEAT_PROXIMITY = 200
+
+    /**
      * POT textures in themes.
      */
     public static boolean POT_TEXTURES = false;

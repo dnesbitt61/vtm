@@ -63,6 +63,17 @@ final class Label extends TextItem {
         return false;
     }
 
+    public static boolean withinRepeatProximity(Label l1, Label l2) {
+        if (shareText(l1, l2)) {
+	    // get distance between Label centers
+	    float[] p1 = {l1.originX, l1.originY};
+	    float[] p2 = {l2.originX, l2.originY};
+	    // TODO avoid sqrt
+	    return GeometryUtils.distance2D(p1, p2) < Parameters.REPEAT_PROXIMITY;
+	} 
+        return false;
+    }
+
     public static boolean bboxOverlaps(TextItem it1, TextItem it2, float add) {
         if (it1.y1 < it1.y2) {
             if (it2.y1 < it2.y2)
