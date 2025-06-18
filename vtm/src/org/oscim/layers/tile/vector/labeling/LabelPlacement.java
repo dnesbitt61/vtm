@@ -273,7 +273,7 @@ public class LabelPlacement {
 
         O:
         for (TextItem ti : ld.labels) {
-	    log.info("DWN text = " + ti.text);
+	    log.info("DWN text = " + ti.label);
             if (!ti.text.caption) {
 	        log.info("DWN this is a caption, continue");
                 continue;
@@ -320,7 +320,6 @@ public class LabelPlacement {
     }
 
     boolean updateLabels(LabelTask work) {
-        log.info("DWN updateLabels mSqrRadius = " + mSquareRadius);
 
         /* get current tiles */
         int lastZoom = mZoom;
