@@ -77,7 +77,7 @@ final class Label extends TextItem {
 	    // TODO avoid sqrt
 	    double d = GeometryUtils.distance2D(p1, p2);
 
-	    log.info("DWN d= " + d + "p1=" + p1[0] + "," + p1[1] + " p2=" + p2[0] + "," + p2[1]);
+//	    log.info("DWN d= " + d + "p1=" + p1[0] + "," + p1[1] + " p2=" + p2[0] + "," + p2[1]);
 
             return d < Parameters.REPEAT_PROXIMITY;
 //	    return GeometryUtils.distance2D(p1, p2) < Parameters.REPEAT_PROXIMITY;

@@ -103,20 +103,20 @@ public class LabelPlacement {
 
     private byte checkOverlap(Label l) {
 
-        log.info("DWN checkOverlap for label " + l.label);
+  //      log.info("DWN checkOverlap for label " + l.label);
         for (Label o = mLabels; o != null; ) {
             //check bounding box and repeat proximity
-            log.info("DWN check bbox overlap for label " + o.label);
+ //           log.info("DWN check bbox overlap for label " + o.label);
             if (!Label.bboxOverlaps(l, o, 100)) {
 		if (!Label.withinRepeatProximity(l, o)) {
-		    log.info("DWN Label is NOT within repeat proximity to " + o.label);
+//		    log.info("DWN Label is NOT within repeat proximity to " + o.label);
                     o = (Label) o.next;
                     continue;
 		} else {
-		    log.info("DWN Label is within repeat proximity to " + o.label);
+//		    log.info("DWN Label is within repeat proximity to " + o.label);
 		}
             } else {
-                log.info("DWN bounding box overlaps bbox overlap for label " + o.label);
+//                log.info("DWN bounding box overlaps bbox overlap for label " + o.label);
 	    }
 
             if (Label.shareText(l, o)) {
@@ -266,14 +266,18 @@ public class LabelPlacement {
     private Label addNodeLabels(MapTile t, Label l, float dx, float dy,
                                 double scale, float cos, float sin) {
 
+        log.info("DWN addNodeLabels");
         LabelTileData ld = getLabels(t);
         if (ld == null)
             return l;
 
         O:
         for (TextItem ti : ld.labels) {
-            if (!ti.text.caption)
+	    log.info("DWN text = " + ti.text);
+            if (!ti.text.caption) {
+	        log.info("DWN this is a caption, continue");
                 continue;
+	    }
 
             // acquire a TextItem to add to TextLayer
             if (l == null)
@@ -472,6 +476,7 @@ public class LabelPlacement {
         }
 
         /* add caption */
+	log.info("DWN add captions");
         for (int i = 0; i < cnt; i++) {
             MapTile t = tiles[i];
             if (!t.state(READY | NEW_DATA))
