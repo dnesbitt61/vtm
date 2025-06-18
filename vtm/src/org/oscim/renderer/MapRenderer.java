@@ -104,7 +104,7 @@ public class MapRenderer {
 
         mBufferPool.releaseBuffers();
         TextureItem.disposeTextures();
-	log.info("VTM DWN onDrawFrame time = " + (System.currentTimeMillis() - frametime) + " count = " + count);
+//	log.info("VTM DWN onDrawFrame time = " + (System.currentTimeMillis() - frametime) + " count = " + count);
 	count++;
     }
 
