@@ -21,8 +21,12 @@ import org.oscim.utils.geom.GeometryUtils;
 import org.oscim.utils.geom.OBB2D;
 import org.oscim.utils.Parameters;
 
+import java.util.logging.Logger;
+
 final class Label extends TextItem {
     TextItem item;
+
+    private static final Logger log = Logger.getLogger(Label.class.getName());
 
     //Link blocking;
     //Link blockedBy;
@@ -71,7 +75,12 @@ final class Label extends TextItem {
 	    float[] p1 = {l1.bbox.originX, l1.bbox.originY};
 	    float[] p2 = {l2.bbox.originX, l2.bbox.originY};
 	    // TODO avoid sqrt
-	    return GeometryUtils.distance2D(p1, p2) < Parameters.REPEAT_PROXIMITY;
+	    double d = GeometryUtils.distance2D(p1, p2);
+
+	    log.info("DWN d= " + d + "p1=" + p1[0] + "," + p1[1] + " p2=" + p2[0] + "," + p2[1]);
+
+            return d < Parameters.REPEAT_PROXIMITY;
+//	    return GeometryUtils.distance2D(p1, p2) < Parameters.REPEAT_PROXIMITY;
 	} 
         return false;
     }

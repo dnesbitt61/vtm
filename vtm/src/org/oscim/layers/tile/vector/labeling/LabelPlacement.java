@@ -107,10 +107,10 @@ public class LabelPlacement {
             //check bounding box and repeat proximity
             if (!Label.bboxOverlaps(l, o, 100)) {
 		if (!Label.withinRepeatProximity(l, o)) {
-		    log.info("Label within repeat proximity");
+		    log.info("DWN Label " + l.text + " is within repeat proximity to " + o.text);
+                    o = (Label) o.next;
+                    continue;
 		}
-                o = (Label) o.next;
-                continue;
             }
 
             if (Label.shareText(l, o)) {
