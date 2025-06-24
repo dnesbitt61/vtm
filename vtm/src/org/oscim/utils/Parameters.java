@@ -86,7 +86,7 @@ public final class Parameters {
      * Repeat proximity (distance squared) for labels with same text
      * TODO - use squared distance to avoid sqrt
      */
-    public static double REPEAT_PROXIMITY = 200;
+    public static double REPEAT_PROXIMITY = 3.5;
 
     /**
      * POT textures in themes.

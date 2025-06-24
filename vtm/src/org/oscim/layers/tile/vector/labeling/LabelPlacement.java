@@ -103,22 +103,11 @@ public class LabelPlacement {
 
     private byte checkOverlap(Label l) {
 
-  //      log.info("DWN checkOverlap for label " + l.label);
         for (Label o = mLabels; o != null; ) {
-            //check bounding box and repeat proximity
- //           log.info("DWN check bbox overlap for label " + o.label);
             if (!Label.bboxOverlaps(l, o, 100)) {
-		if (!Label.withinRepeatProximity(l, o)) {
-//		    log.info("DWN Label is NOT within repeat proximity to " + o.label);
                     o = (Label) o.next;
                     continue;
-		} else {
-//		    log.info("DWN Label is within repeat proximity to " + o.label);
-		}
-            } else {
-//                log.info("DWN bounding box overlaps bbox overlap for label " + o.label);
 	    }
-
             if (Label.shareText(l, o)) {
                 // keep the label that was active earlier
                 if (o.active <= l.active)
@@ -208,7 +197,6 @@ public class LabelPlacement {
 
     private Label addWayLabels(MapTile t, Label l, float dx, float dy,
                                double scale) {
-        log.info("DWN addWayLabels");
         LabelTileData ld = getLabels(t);
         if (ld == null)
             return l;
@@ -266,18 +254,14 @@ public class LabelPlacement {
     private Label addNodeLabels(MapTile t, Label l, float dx, float dy,
                                 double scale, float cos, float sin) {
 
-        log.info("DWN addNodeLabels");
         LabelTileData ld = getLabels(t);
         if (ld == null)
             return l;
 
         O:
         for (TextItem ti : ld.labels) {
-	    log.info("DWN text = " + ti.label);
-            if (!ti.text.caption) {
-	        log.info("DWN this is a caption, continue");
+            if (!ti.text.caption)
                 continue;
-	    }
 
             // acquire a TextItem to add to TextLayer
             if (l == null)
@@ -298,13 +282,19 @@ public class LabelPlacement {
                     l.text.dy);
 
             for (Label o = mLabels; o != null; ) {
-                if (l.bbox.overlaps(o.bbox)) {
+                if (o.text.caption && Label.withinRepeatProximity(l, o)){
+		    o = removeLabel(o);
+                    continue;
+		}
+
+		if (l.bbox.overlaps(o.bbox)) {
                     if (l.text.priority < o.text.priority) {
                         o = removeLabel(o);
                         continue;
                     }
                     continue O;
                 }
+
                 o = (Label) o.next;
             }
 
@@ -475,7 +465,6 @@ public class LabelPlacement {
         }
 
         /* add caption */
-	log.info("DWN add captions");
         for (int i = 0; i < cnt; i++) {
             MapTile t = tiles[i];
             if (!t.state(READY | NEW_DATA))
